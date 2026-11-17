@@ -1,0 +1,14 @@
+{
+  "name": "fuzzy-sequence",
+  "description": "Connect your AI assistant to your Fuzzy account.",
+  "owner": {
+    "name": "Fuzzy Sequence"
+  },
+  "plugins": [
+    {
+      "name": "fuzzy-sequence",
+      "source": "./clients/claude-plugin",
+      "description": "Read your Fuzzy campaigns, contacts, inbox and metrics."
+    }
+  ]
+}

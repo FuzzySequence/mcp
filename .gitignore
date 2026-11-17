@@ -1,0 +1,6 @@
+.env
+*.pem
+*.key
+token.json
+.mcp-publisher/
+node_modules/

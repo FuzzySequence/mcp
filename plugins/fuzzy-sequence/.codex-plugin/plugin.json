@@ -1,0 +1,33 @@
+{
+  "name": "fuzzy-sequence",
+  "version": "0.1.0",
+  "description": "Read your Fuzzy campaigns, contacts, inbox, account details and outreach metrics.",
+  "author": {
+    "name": "Fuzzy Sequence",
+    "url": "https://app.fuzzysequence.com"
+  },
+  "homepage": "https://github.com/FuzzySequence/mcp",
+  "repository": "https://github.com/FuzzySequence/mcp",
+  "keywords": [
+    "crm",
+    "outreach",
+    "campaigns",
+    "mcp"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Fuzzy Sequence",
+    "shortDescription": "Your Fuzzy workspace",
+    "longDescription": "Connect your own Fuzzy account to read campaigns, contacts, contact lists, inbox conversations, posts, account details and outreach metrics. This package requests read-only access and offline access for automatic token refresh.",
+    "developerName": "Fuzzy Sequence",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://github.com/FuzzySequence/mcp",
+    "defaultPrompt": [
+      "Use Fuzzy to list my campaigns.",
+      "Show my Fuzzy credit balance."
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+name: Publish Fuzzy MCP registry entry
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fuzzy-mcp-registry-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      MCP_PUBLISHER_VERSION: v1.8.1
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Verify the production endpoint and published identity
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.error
+          from pathlib import Path
+          server = json.loads(Path('server.json').read_text())
+          endpoint = 'https://app-api.fuzzysequence.com/public-mcp'
+          assert server['name'] == 'io.github.FuzzySequence/mcp'
+          assert server['remotes'] == [{'type': 'streamable-http', 'url': endpoint}]
+          assert server['repository']['url'] == 'https://github.com/FuzzySequence/mcp'
+          try:
+              urllib.request.urlopen(endpoint, timeout=20)
+          except urllib.error.HTTPError as response:
+              assert response.code == 401
+              assert 'resource_metadata=' in response.headers.get('WWW-Authenticate', '')
+          else:
+              raise AssertionError('MCP endpoint must require authentication')
+          with urllib.request.urlopen('https://app-api.fuzzysequence.com/.well-known/oauth-protected-resource', timeout=20) as response:
+              metadata = json.load(response)
+          assert metadata['resource'] == endpoint
+          assert metadata['authorization_servers'] == ['https://app-api.fuzzysequence.com/oauth']
+          print('Production MCP authentication discovery verified.')
+          PY
+      - name: Install signature verifier
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
+      - name: Download and verify the pinned publisher
+        run: |
+          set -euo pipefail
+          archive=mcp-publisher_linux_amd64.tar.gz
+          base_url="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error --output "$archive.sigstore.json" "$base_url/$archive.sigstore.json"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $archive" | sha256sum --check
+          cosign verify-blob --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/${MCP_PUBLISHER_VERSION}" \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com "$archive"
+          tar xzf "$archive" mcp-publisher
+      - name: Authenticate with the repository identity
+        run: ./mcp-publisher login github-oidc
+      - name: Validate the registry metadata
+        run: ./mcp-publisher validate server.json
+      - name: Publish the registry metadata
+        run: ./mcp-publisher publish server.json

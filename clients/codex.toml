@@ -1,0 +1,7 @@
+# Merge this section into your existing Codex config; keep other settings.
+[mcp_servers.fuzzy]
+url = "https://app-api.fuzzysequence.com/public-mcp"
+scopes = ["read", "offline_access"]
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+default_tools_approval_mode = "writes"

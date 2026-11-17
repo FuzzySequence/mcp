@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "fuzzy": {
+      "type": "http",
+      "url": "https://app-api.fuzzysequence.com/public-mcp",
+      "oauth": {
+        "scopes": "read offline_access"
+      }
+    }
+  }
+}

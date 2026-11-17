@@ -1,0 +1,10 @@
+{
+  "name": "fuzzy-sequence",
+  "version": "0.1.0",
+  "description": "Read your Fuzzy campaigns, contacts, inbox and outreach metrics.",
+  "author": {
+    "name": "Fuzzy Sequence"
+  },
+  "homepage": "https://github.com/FuzzySequence/mcp",
+  "repository": "https://github.com/FuzzySequence/mcp"
+}
