@@ -1,7 +1,7 @@
 {
   "name": "fuzzy-sequence",
-  "version": "0.1.0",
-  "description": "Read your Fuzzy campaigns, contacts, inbox and outreach metrics.",
+  "version": "0.2.0",
+  "description": "Connect your assistant to Fuzzy campaigns, contacts, inbox, and LinkedIn drafts.",
   "author": {
     "name": "Fuzzy Sequence"
   },

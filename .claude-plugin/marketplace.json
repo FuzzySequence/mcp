@@ -8,7 +8,7 @@
     {
       "name": "fuzzy-sequence",
       "source": "./clients/claude-plugin",
-      "description": "Read your Fuzzy campaigns, contacts, inbox and metrics."
+      "description": "Connect your assistant to Fuzzy campaigns, contacts, inbox, and LinkedIn drafts."
     }
   ]
 }
