@@ -1,7 +1,7 @@
 {
   "name": "fuzzy-sequence",
-  "version": "0.1.0",
-  "description": "Read your Fuzzy campaigns, contacts, inbox, account details and outreach metrics.",
+  "version": "0.2.0",
+  "description": "Connect your assistant to Fuzzy campaigns, contacts, inbox, and LinkedIn drafts.",
   "author": {
     "name": "Fuzzy Sequence",
     "url": "https://app.fuzzysequence.com"
@@ -18,11 +18,12 @@
   "interface": {
     "displayName": "Fuzzy Sequence",
     "shortDescription": "Your Fuzzy workspace",
-    "longDescription": "Connect your own Fuzzy account to read campaigns, contacts, contact lists, inbox conversations, posts, account details and outreach metrics. This package requests read-only access and offline access for automatic token refresh.",
+    "longDescription": "Read your Fuzzy data, build campaign drafts, and generate LinkedIn hooks and drafts. Review all requested permissions, including credit use and automatic renewal, when you connect.",
     "developerName": "Fuzzy Sequence",
     "category": "Productivity",
     "capabilities": [
-      "Read"
+      "Read",
+      "Write"
     ],
     "websiteURL": "https://github.com/FuzzySequence/mcp",
     "defaultPrompt": [

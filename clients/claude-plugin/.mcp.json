@@ -4,7 +4,7 @@
       "type": "http",
       "url": "https://app-api.fuzzysequence.com/public-mcp",
       "oauth": {
-        "scopes": "read offline_access"
+        "scopes": "read draft campaign_draft credit_spend campaign_launch destructive billing offline_access"
       }
     }
   }
