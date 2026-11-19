@@ -68,7 +68,7 @@ An agent can automate configuration only when its session has access to the clie
 | `list_posts` | Saved LinkedIn posts |
 | `list_inbox_contacts` | Inbox conversations |
 
-The packaged connection requests read-only access. Other server capabilities require separately granted scopes and any required confirmation. Generation, publishing, campaign launch, sending, and related spending operations remain unavailable while their public-MCP credit controls are completed.
+The packaged connection starts with read access. Grant additional OAuth permissions to build campaign drafts, launch reviewed campaigns, publish saved LinkedIn drafts, or message an existing LinkedIn connection or conversation. Fuzzy shows the cost for approval before a paid action. See the [public MCP guide](https://getfuzzy.ai/mcp) for tools, permissions, and rates.
 
 ## Troubleshooting
 
